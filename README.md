@@ -25,9 +25,8 @@ Doodle is a collaborative web application that enables users to draw on a shared
 
 ## Link to live project
 
-```bash
 [https://doodle-sketch.netlify.app/]
-```
+
 
 
 ## Installation
