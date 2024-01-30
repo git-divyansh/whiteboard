@@ -1,0 +1,50 @@
+.canvasContainerBrush{
+    width: max-content;
+    height: max-content;
+    cursor: url('../../Assests/paint-brush-svgrepo-com2.svg'), auto;
+
+}
+
+.canvasContainerEraser{
+    width: max-content;
+    height: max-content;
+    cursor: url('../../Assests/eraser-svgrepo-com.svg'), auto
+}
+
+.exitButtonContainer{
+    top: 5%;
+    left: 2%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.exitIcon:active{
+    transform: scale(0.9);
+}
+
+.exitIcon{
+    height: 2rem;
+    width: 2rem;
+    display: inline-block;
+    color: #6b9080;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 50px;
+    background-color: rgb(63, 63, 63);
+    border-color: transparent black transparent transparent;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  .exitButtonContainer:hover {
+    .tooltiptext{
+        visibility: visible;
+    }
+  }

@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Mukta:wght@200;300;400&family=Oswald:wght@200;300;500&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Quicksand:wght@400;500;700&family=Single+Day&family=Urbanist:wght@200;400;500&display=swap");
+
+.menuContainer {
+  z-index: 2;
+  position: absolute;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+  left: 50%;
+  top: 40px;
+  border-top-right-radius: 4px;
+  border: 1px solid rgb(249, 211, 217);
+  background-color: #a4c3b2;
+  transform: translateX(-50%);
+  /* box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.05),
+    0px 0px 3.12708px rgba(0, 0, 0, 0.0798),
+    0px 0px 0.931014px rgba(0, 0, 0, 0.1702); */
+  box-shadow: 0px -2px 7px 1px #86a5a5;
+  .iconWrapper {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+
+    .icon {
+      font-size: 20px;
+      color: #3d3d3d;
+    }
+    &:hover {
+      background-color: #d2e9e9;
+    }
+
+    &.active {
+      transform: scale(0.9);
+      background-color: #d2e9e9;
+    }
+  }
+  cursor:grab;
+}
+
+.enterNameModal {
+  z-index: 4;
+  top: 30%;
+  border-radius: 10px;
+  background-color: #a4c3b2;
+  border-width: 1px;
+  border-radius: 20px;
+  font-family: "Urbanist", sans-serif;
+}
+
+.enterNameModal div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 10rem;
+}
+
+.enterNameModal div form input{
+  height: 2rem;
+  flex: 3;
+  border-width: 0px;
+  box-shadow: 2px 2px 5px 1px #9fa1a1;
+  border-radius: 10px;
+  padding: 0px 7px;
+  &:focus{
+    outline: none;
+  }
+}
+.enterNameModal div form button{
+  margin-left: 2px;
+  height: 2rem;
+  flex: 1;
+  border-radius: 7px;
+  border-width: 0px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px 1px #9fa1a1;
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.formContainerModal {
+  background-color: #3d3d3d;
+  opacity: 0.7;
+  z-index: 4;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}

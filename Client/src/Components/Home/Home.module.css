@@ -1,0 +1,116 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Mukta:wght@200;300;400&family=Oswald:wght@200;300;500&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Quicksand:wght@400;500;700&family=Single+Day&family=Urbanist:wght@200;400;500&display=swap");
+
+.homeContainer{
+    height: 100vh;
+    width: 100vw;
+    background-image: url("./../../Assests/ladingPage-background.jpg"), url("./../../Assests/ladingPage-background2.jpg");
+    background-position: right top, left top;
+    background-repeat: no-repeat, no-repeat;
+    font-family: "Urbanist", sans-serif;
+}
+
+.linkboxContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+    position: absolute;
+    height: 13.5rem;
+    width: 30rem;
+    margin: 22% 12%;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.homeHeader{
+    font-size: 25px;
+}
+
+.linkContaier{
+    display: flex;
+    gap: 10px;
+}
+
+.newLinkContainer{
+    display: flex;
+    margin: 20px 0px;
+    gap: 10px;   
+}
+
+.newLinkButton{
+    color: white;
+    background-color: rgb(54, 53, 53);
+    border-radius: 5px;
+    height: 3rem;
+    width: 6rem;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.newLinkButton:active{
+    transform: scale(0.9);
+}
+
+.enterRoomIdContainer{
+    height: 3rem;
+    width: 5rem;
+    display: flex;
+    gap: 5px;
+}
+
+.enterRoomIdContainer input{
+    border-radius: 10px;
+    font-size: 17px;
+    &:focus{
+        outline: none;
+        background-color: #d6e1e1;
+    }
+}
+.enterRoomIdContainer button{
+    color: white;
+    background-color: rgb(54, 53, 53);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.enterRoomIdContainer button:active{
+    transform: scale(0.9);
+}
+
+.newLinkContainer{
+    
+    height: 2rem;
+    width: fit-content;
+    display: flex;
+    gap: 5px;
+}
+
+.newLinkContainer input{
+    font-size: 15px;
+    height: 2.5rem;
+    width: 21rem;
+    border-radius: 10px;
+    font-size: 15px;
+    &:focus{
+        outline: none;
+        background-color: #d6e1e1;
+    }
+    
+}
+
+.newLinkContainer button{
+    color: white;
+    background-color: rgb(54, 53, 53);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    height: 2.5rem;
+    border-radius: 10px;
+}
+
+.newLinkContainer button:active{
+    transform: scale(0.9);
+}

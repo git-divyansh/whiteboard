@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Mukta:wght@200;300;400&family=Oswald:wght@200;300;500&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Quicksand:wght@400;500;700&family=Single+Day&family=Urbanist:wght@200;400;500&display=swap");
+
+.toolWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 10px;
+  top: 6.5rem;
+  gap: 3px;
+  transition: ease-in-out 0.5s;
+}
+.toolContainer {
+  /* transform : translateX(-100%); */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: -2px 2px 5px 1px #9fa1a1;
+  padding: 5px 10px;
+  width: fit-content;
+  border-radius: 20px;
+  color: black;
+  font-family: "Urbanist", sans-serif;
+  border: 1px solid rgb(183, 180, 180);
+  background-color: #a4c3b2;
+  .toolItem {
+    margin-bottom: 20px;
+    .toolText {
+      margin: 1.5rem 0.5rem;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .itemContainer {
+      width: fit-content;
+      display: flex;
+      gap: 5px;
+      .colorboxContainer {
+        background-color: #e3f4f4;
+        cursor: pointer;
+      }
+      .rangeInput {
+        cursor: pointer;
+        width: 12rem;
+      }
+    }
+  }
+}
+.spanElement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #b8d2c3;
+  height: 6rem;
+  width: 1.6rem;
+  &:hover {
+    transition: ease-in-out 0.1s;
+    transform: scale(1.09);
+  }
+}
