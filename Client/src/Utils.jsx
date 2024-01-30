@@ -1,12 +1,12 @@
 const MENU_ITEMS = {
-    PENCIL: 'PENCIL',
-    ERASER: 'ERASER',
-    UNDO: 'UNDO',
-    REDO: 'REDO',
-    DOWNLOAD: 'DOWNLOAD',
-    CLEAR : 'CLEAR'
-}
+  PENCIL: "PENCIL",
+  ERASER: "ERASER",
+  UNDO: "UNDO",
+  REDO: "REDO",
+  DOWNLOAD: "DOWNLOAD",
+  CLEAR: "CLEAR",
+};
 
-const URL = "http://localhost:3000"
+const URL = "https://whiteboardbackend-5ikr.onrender.com";
 
-export {MENU_ITEMS, URL};
+export { MENU_ITEMS, URL };
