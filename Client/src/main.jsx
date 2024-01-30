@@ -9,6 +9,7 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
       <Provider store={store}>
+      {console.log("Present")}
         <App />
       </Provider>
   </BrowserRouter>
