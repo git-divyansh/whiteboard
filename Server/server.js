@@ -6,14 +6,14 @@ const cors = require("cors");
 const app = express();
 app.use(
   cors({
-    origin: "https://doodle-sketch.netlify.app",
+    origin: "https://doodle-sketch.netlify.app/",
     methods: ["GET", "POST"],
     credentials: true,
   })
 );
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, { cors: "https://doodle-sketch.netlify.app" });
+const io = new Server(httpServer, { cors: "https://doodle-sketch.netlify.app/" });
 
 io.on("connection", (socket) => {
   console.log("Connected socket");
@@ -23,6 +23,10 @@ io.on("connection", (socket) => {
 
   socket.on("beginPath", (args) => {
     socket.to(roomid).emit("beginPath", args);
+  });
+
+  socket.on("endPath", (args) => {
+    socket.to(roomid).emit("endPath", args);
   });
 
   socket.on("drawLine", (args) => {

@@ -19,11 +19,14 @@ let move = null;
 const Board = ({ socket }) => {
   const dispatch = useDispatch();
 
+  const [otherUserDrawing, setOtherUserDrawing] = useState({isuser : false, username : null});
+
   const canvasRef = useRef(null);
   const shouldDraw = useRef(false);
   const activeMenuItem = useSelector((state) => state.menu.activeMenuItem);
   const actionMenuItem = useSelector((state) => state.menu.actionMenuItem);
   const { color, size } = useSelector((state) => state.toolBox[activeMenuItem]);
+  const {name} = useSelector((state) => state.room);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -120,9 +123,14 @@ const Board = ({ socket }) => {
     };
 
     const handleMouseDown = (e) => {
+      if(otherUserDrawing.isuser){
+        alert(`${otherUserDrawing.username} is typing right now!`);
+        return;
+      }
+
       shouldDraw.current = true;
       beginPathCanvas(e.clientX, e.clientY + 23);
-      socket.emit("beginPath", { x: e.clientX, y: e.clientY + 23 });
+      socket.emit("beginPath", { x: e.clientX, y: e.clientY + 23, name : name});
     };
 
     const handleMouseUp = (e) => {
@@ -133,6 +141,8 @@ const Board = ({ socket }) => {
       move.next = node;
       node.prev = move;
       move = node;
+
+      socket.emit("endPath", { x: e.clientX, y: e.clientY + 23, name : null});
     };
 
     const handleMouseMove = (e) => {
@@ -160,8 +170,18 @@ const Board = ({ socket }) => {
     canvas.addEventListener("mouseenter", solve);
     canvas.addEventListener("mouseout", handleMouseUp);
 
-    socket.on("beginPath", (path) => beginPathCanvas(path.x, path.y));
+    socket.on("beginPath", (path) => {
+      setOtherUserDrawing((prev) => {
+        return {...prev, username : path.name, isuser : true};
+      });
+      beginPathCanvas(path.x, path.y);
+    });
     socket.on("drawLine", (path) => drawLine(path.x, path.y));
+    socket.on("endPath", (path) => {
+      setOtherUserDrawing((prev) => {
+        return {...prev, username : path.name, isuser : false};
+      });
+    })
     socket.on("newChat", (messages) => handleIcomingMessages(messages));
 
     return () => {
