@@ -7,7 +7,7 @@ const MENU_ITEMS = {
   CLEAR: "CLEAR",
 };
 
-// const URL = "https://whiteboardbackend-5ikr.onrender.com";
-const URL = "http://localhost:3000";
+const URL = "https://whiteboardbackend-5ikr.onrender.com";
+// const URL = "http://localhost:3000";
 
 export { MENU_ITEMS, URL };

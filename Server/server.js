@@ -14,8 +14,8 @@ app.use(
 );
 
 const httpServer = createServer(app);
-// const io = new Server(httpServer, { cors: "https://doodle-sketch.netlify.app/" });
-const io = new Server(httpServer, { cors: "http://localhost:5173/" });
+const io = new Server(httpServer, { cors: "https://doodle-sketch.netlify.app/" });
+// const io = new Server(httpServer, { cors: "http://localhost:5173/" });
 
 io.on("connection", (socket) => {
   console.log("Connected socket");
