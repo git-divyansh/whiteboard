@@ -8,7 +8,7 @@ const Home = () => {
 
   const copyRef = useRef(null);
 
-  const [URL, setURL] = useState("http://localhost:5173/");
+  const [URL, setURL] = useState("https://doodle-sketch.netlify.app/");
   const [showLinkContainer, SetshowLinkContainer] = useState(false);
   const [input, setInput] = useState(null);
 
