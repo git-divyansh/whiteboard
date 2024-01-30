@@ -23,9 +23,7 @@ Doodle is a collaborative web application that enables users to draw on a shared
 - **Socket.IO**: Library for enabling real-time, bidirectional communication between web clients and servers.
 - **HTML5 Canvas API**: Used for creating the drawing canvas and implementing drawing functionalities.
 
-## Link to live project
-
-[https://doodle-sketch.netlify.app/]
+#### Link to live project : https://doodle-sketch.netlify.app/
 
 
 
