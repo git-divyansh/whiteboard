@@ -6,7 +6,8 @@ const cors = require("cors");
 const app = express();
 app.use(
   cors({
-    origin: "https://doodle-sketch.netlify.app/",
+    // origin: "https://doodle-sketch.netlify.app/",
+    origin: "http://localhost:5173/",
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -14,6 +15,7 @@ app.use(
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: "https://doodle-sketch.netlify.app/" });
+// const io = new Server(httpServer, { cors: "http://localhost:5173/" });
 
 io.on("connection", (socket) => {
   console.log("Connected socket");

@@ -147,7 +147,7 @@ const Board = ({ socket }) => {
 
     const handleMouseMove = (e) => {
       if (!shouldDraw.current) return;
-
+      
       drawLine(e.clientX, e.clientY + 23);
       socket.emit("drawLine", { x: e.clientX, y: e.clientY + 23 });
     };
@@ -172,14 +172,16 @@ const Board = ({ socket }) => {
 
     socket.on("beginPath", (path) => {
       setOtherUserDrawing((prev) => {
-        return {...prev, username : path.name, isuser : true};
+        const newObj = {...prev, username : path.name, isuser : true};
+        return newObj;
       });
       beginPathCanvas(path.x, path.y);
     });
-    socket.on("drawLine", (path) => drawLine(path.x, path.y));
+    socket.on("drawLine", (path) => {drawLine(path.x, path.y)});
     socket.on("endPath", (path) => {
       setOtherUserDrawing((prev) => {
-        return {...prev, username : path.name, isuser : false};
+        const newObj = {...prev, username : path.name, isuser : false};
+        return newObj;
       });
     })
     socket.on("newChat", (messages) => handleIcomingMessages(messages));
