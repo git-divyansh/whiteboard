@@ -19,14 +19,17 @@ let move = null;
 const Board = ({ socket }) => {
   const dispatch = useDispatch();
 
-  const [otherUserDrawing, setOtherUserDrawing] = useState({isuser : false, username : null});
+  const otherUserRef = useRef({ 
+    isuser: false,
+    username: null
+  });
 
   const canvasRef = useRef(null);
   const shouldDraw = useRef(false);
   const activeMenuItem = useSelector((state) => state.menu.activeMenuItem);
   const actionMenuItem = useSelector((state) => state.menu.actionMenuItem);
   const { color, size } = useSelector((state) => state.toolBox[activeMenuItem]);
-  const {name} = useSelector((state) => state.room);
+  const { name } = useSelector((state) => state.room);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -123,17 +126,19 @@ const Board = ({ socket }) => {
     };
 
     const handleMouseDown = (e) => {
-      if(otherUserDrawing.isuser){
-        alert(`${otherUserDrawing.username} is typing right now!`);
+      // console.log(otherUserRef.current);
+      if (otherUserRef.current.isuser) {
+        alert(`${otherUserRef.current.username} is typing right now!`);
         return;
       }
 
       shouldDraw.current = true;
       beginPathCanvas(e.clientX, e.clientY + 23);
-      socket.emit("beginPath", { x: e.clientX, y: e.clientY + 23, name : name});
+      socket.emit("beginPath", { x: e.clientX, y: e.clientY + 23, name: name });
     };
 
     const handleMouseUp = (e) => {
+      // console.log(otherUserRef.current.isuser);
       shouldDraw.current = false;
 
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -142,12 +147,12 @@ const Board = ({ socket }) => {
       node.prev = move;
       move = node;
 
-      socket.emit("endPath", { x: e.clientX, y: e.clientY + 23, name : null});
+      socket.emit("endPath", { x: e.clientX, y: e.clientY + 23, name: null });
     };
 
     const handleMouseMove = (e) => {
-      if (!shouldDraw.current) return;
-      
+      if (!shouldDraw.current || otherUserRef.current.isuser) return;
+
       drawLine(e.clientX, e.clientY + 23);
       socket.emit("drawLine", { x: e.clientX, y: e.clientY + 23 });
     };
@@ -161,29 +166,25 @@ const Board = ({ socket }) => {
       dispatch(changeIncomingMessage(incomingMessage));
     };
 
-    const solve = () =>{
+    const solve = () => {
       canvas.addEventListener("mousedown", handleMouseDown);
       canvas.addEventListener("mouseup", handleMouseUp);
       canvas.addEventListener("mousemove", handleMouseMove);
-    }
+    };
 
     canvas.addEventListener("mouseenter", solve);
     canvas.addEventListener("mouseout", handleMouseUp);
 
     socket.on("beginPath", (path) => {
-      setOtherUserDrawing((prev) => {
-        const newObj = {...prev, username : path.name, isuser : true};
-        return newObj;
-      });
+      otherUserRef.current = {isuser : true, username : path.name};
       beginPathCanvas(path.x, path.y);
     });
-    socket.on("drawLine", (path) => {drawLine(path.x, path.y)});
+    socket.on("drawLine", (path) => {
+      drawLine(path.x, path.y);
+    });
     socket.on("endPath", (path) => {
-      setOtherUserDrawing((prev) => {
-        const newObj = {...prev, username : path.name, isuser : false};
-        return newObj;
-      });
-    })
+      otherUserRef.current = {isuser : false, username : path.name};
+    });
     socket.on("newChat", (messages) => handleIcomingMessages(messages));
 
     return () => {
@@ -195,6 +196,7 @@ const Board = ({ socket }) => {
       socket.off("beginPath", (x, y) => beginPathCanvas(x, y));
       socket.off("drawLine", (x, y) => drawLine(x, y));
       socket.off("newChat", (messages) => handleIcomingMessages(messages));
+      socket.off("endPath", (path) => {});
       socket.disconnect();
     };
   }, []);
